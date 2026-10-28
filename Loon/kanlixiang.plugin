@@ -1,0 +1,17 @@
+#!name=看理想 APP
+#!desc=Surge 模块移植 Loon；Map Local 使用 reject 替代，行为不完全等价。
+[Rewrite]
+^https?:\/\/api\.vistopia\.com\.cn\/api\/v2\/home\/advertisement(\?|$) url reject-dict
+^https?:\/\/api\.vistopia\.com\.cn\/api\/v2\/other\/pop-up(\?|$) url reject
+
+[Script]
+http-response ^https?:\/\/api\.vistopia\.com\.cn\/api\/v2\/home/header-new(\?|$) script-path=https://raw.githubusercontent.com/Aioneas/Surge/main/Script/klx_no_ads.js, requires-body=true, timeout=15, tag=看理想1
+http-response ^https?:\/\/api\.vistopia\.com\.cn\/api\/v2\/other/config(\?|$) script-path=https://raw.githubusercontent.com/Aioneas/Surge/main/Script/klx_no_ads.js, requires-body=true, timeout=15, tag=看理想2
+http-response ^https?:\/\/api\.vistopia\.com\.cn\/api\/v2\/(reader/(section-detail|detail)|user/home|vip/buy-list|services/play-token(?!\?library_article_id=)) script-path=https://raw.githubusercontent.com/Aioneas/Surge/8918cca082e16cf42f7b72cd52f20e036724e719/Script/klx_app_video_compat.js, requires-body=true, timeout=15, tag=看理想3
+http-response ^https?:\/\/api\.vistopia\.com\.cn\/api\/v2\/(services/articles-play-token(\?|$)|content/batch(\?|$)) script-path=https://raw.githubusercontent.com/Aioneas/Surge/main/Script/klx_app_download_unlock.js?v=20260814g, requires-body=true, timeout=15, tag=看理想4
+http-response ^https?:\/\/api\.vistopia\.com\.cn\/api\/v2\/(content/(content-show/\d+|article_list(\?|$))) script-path=https://raw.githubusercontent.com/Aioneas/Surge/main/Script/klx_app_catalog_unlock.js, requires-body=true, timeout=15, tag=看理想5
+http-response ^https?:\/\/api\.vistopia\.com\.cn\/api\/v2\/user/profile(\?|$) script-path=https://raw.githubusercontent.com/Aioneas/Surge/main/Script/klx_profile_clean.js, requires-body=true, timeout=15, tag=看理想6
+http-response ^https?:\/\/shop\.vistopia\.com\.cn\/vip_rights(\?|$) script-path=https://raw.githubusercontent.com/Aioneas/Surge/b29d585e7953968337272a9e0f74a83676602e56/Script/klx_vip_page_hide_purchase.js, requires-body=true, timeout=15, tag=看理想7
+
+[MITM]
+hostname = api.vistopia.com.cn, shop.vistopia.com.cn
