@@ -1,3 +1,5 @@
+# upstream_config: https://raw.githubusercontent.com/Aioneas/Surge/main/Module/kanlixiang.app.sgmodule
+# original_format: Surge sgmodule; script sources are retained at their original URLs.
 #!name=看理想 APP
 #!desc=Surge 模块移植 Loon；Map Local 使用 reject 替代，行为不完全等价。
 [Rewrite]
